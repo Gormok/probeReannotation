@@ -1,0 +1,42 @@
+# Creates symbolLists matching probes to ENSEMBL ids
+
+# Allows us to run R code directly from Snakefile
+from snakemake.utils import R
+
+# Extract only relevant info from the int files
+rule clarify:
+     input:
+        int = "../Alignment/data/{tool}/{platform}.int"
+     output:
+        txt = "../SymbolLists/intermediate/{tool}/{platform}.txt"
+     shell:
+         r"sed -r 's/([^\t]*)\t([^\t]*)\t([^\t]*)\t([^\t]*)\t([^\t]*)\t([^\t]*)\t(.*)\t(.*$)/\1 \4 \6 \8/' {input.int} > {output.txt}"
+# r"sed..." instead of "sed..." stops interpreting special symbols in the string, we want to call the shell command with exactly this string
+
+# uniq: uniquely matched probes only
+# multi: non-uniquely matched probes included if criteria are met
+rule symbolTable:
+   input:
+      txt = "../SymbolLists/intermediate/{tool}/{platform}.txt"
+   output:
+      uniq = "../SymbolLists/data/{tool}/{platform}/uniq.txt",
+      multi = "../SymbolLists/data/{tool}/{platform}/multi.txt"
+   log:
+      log = "../SymbolLists/data/{tool}/logs/{platform}.log"
+   shell:
+      "Rscript ../SymbolLists/scripts/createTable.R -f {input.txt} -o {output.uniq} -m {output.multi} | tee {log[0]}"
+
+# Saves the symbolList created above as an R object - list   
+rule list:
+   input:
+      table = "../SymbolLists/data/{tool}/{platform}.txt"
+   output:
+      RData = "../SymbolLists/data/{tool}/{platform}.RData"
+   run:
+      R("""
+      df = read.table("{input.table}", header = T, stringsAsFactors = F)
+      symbolList = as.list(df$Ensembl)
+      names(symbolList) = df$probeID
+      save(symbolList, file = "{output.RData}")
+      """)
+      # note "" around substituted strings

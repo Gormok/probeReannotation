@@ -1,0 +1,53 @@
+$compare
+[1] "../SymbolLists/data/bowtie/Affymetrix/uniq.txt:../SymbolLists/data/tophat/Affymetrix/uniq.txt:../SymbolLists/data/star/Affymetrix/uniq.txt:../SymbolLists/data/hisat2/Affymetrix/uniq.txt"
+
+$names
+[1] "bowtie:tophat:star:hisat2"
+
+$odir
+[1] "../Comparisons/data/Affymetrix/uniq"
+
+$reference
+[1] "../Orig/Affymetrix.txt"
+
+$map
+[1] "../Orig/map.txt"
+
+$help
+[1] FALSE
+
+$compare
+                                          bowtie 
+"../SymbolLists/data/bowtie/Affymetrix/uniq.txt" 
+                                          tophat 
+"../SymbolLists/data/tophat/Affymetrix/uniq.txt" 
+                                            star 
+  "../SymbolLists/data/star/Affymetrix/uniq.txt" 
+                                          hisat2 
+"../SymbolLists/data/hisat2/Affymetrix/uniq.txt" 
+
+$names
+[1] "bowtie:tophat:star:hisat2"
+
+$odir
+[1] "../Comparisons/data/Affymetrix/uniq"
+
+$reference
+[1] "../Orig/Affymetrix.txt"
+
+$map
+[1] "../Orig/map.txt"
+
+$help
+[1] FALSE
+
+         Tool Matches Total Probes Genes Mismatches
+bowtie bowtie     255   337    337   177         82
+tophat tophat     273   360    360   190         87
+star     star     271   356    356   187         85
+hisat2 hisat2     266   350    350   185         84
+         Tool Matches Total Probes Genes Mismatches
+bowtie bowtie     255   337    337   177         82
+tophat tophat     273   360    360   190         87
+star     star     271   356    356   187         85
+hisat2 hisat2     266   350    350   185         84

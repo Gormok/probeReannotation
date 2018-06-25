@@ -1,0 +1,24 @@
+$file
+[1] "../SymbolLists/intermediate/hisat2/Illumina.txt"
+
+$output
+[1] "../SymbolLists/data/hisat2/Illumina/uniq.txt"
+
+$multimaps
+[1] "../SymbolLists/data/hisat2/Illumina/multi.txt"
+
+$help
+[1] FALSE
+
+[1] "SUCCESS: Breakdown is a disjoint union and covers all indices."
+418 probes were matched uniquely.
+21 extra symbolList entries were added for uncovered genes.
+18 genes were covered by the entries.
+0 probes were left unused.
+Other entries:XF:Z:__no_feature : 8 
+XF:Z:__too_low_aQual : 0 
+XF:Z:__not_aligned : 7 
+XF:Z:__alignment_not_unique : 32 
+residue.mix : 0 
+[1] "Result table saved to ../SymbolLists/data/hisat2/Illumina/uniq.txt"
+[1] "Multi table saved to ../SymbolLists/data/hisat2/Illumina/multi.txt"

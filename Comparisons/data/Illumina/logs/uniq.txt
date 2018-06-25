@@ -1,0 +1,53 @@
+$compare
+[1] "../SymbolLists/data/bowtie/Illumina/uniq.txt:../SymbolLists/data/tophat/Illumina/uniq.txt:../SymbolLists/data/star/Illumina/uniq.txt:../SymbolLists/data/hisat2/Illumina/uniq.txt"
+
+$names
+[1] "bowtie:tophat:star:hisat2"
+
+$odir
+[1] "../Comparisons/data/Illumina/uniq"
+
+$reference
+[1] "../Orig/Illumina.txt"
+
+$map
+[1] "../Orig/map.txt"
+
+$help
+[1] FALSE
+
+$compare
+                                        bowtie 
+"../SymbolLists/data/bowtie/Illumina/uniq.txt" 
+                                        tophat 
+"../SymbolLists/data/tophat/Illumina/uniq.txt" 
+                                          star 
+  "../SymbolLists/data/star/Illumina/uniq.txt" 
+                                        hisat2 
+"../SymbolLists/data/hisat2/Illumina/uniq.txt" 
+
+$names
+[1] "bowtie:tophat:star:hisat2"
+
+$odir
+[1] "../Comparisons/data/Illumina/uniq"
+
+$reference
+[1] "../Orig/Illumina.txt"
+
+$map
+[1] "../Orig/map.txt"
+
+$help
+[1] FALSE
+
+         Tool Matches Total Probes Genes Mismatches
+bowtie bowtie     278   392    392   253        114
+tophat tophat     302   443    443   278        141
+star     star     297   416    416   265        119
+hisat2 hisat2     297   418    418   265        121
+         Tool Matches Total Probes Genes Mismatches
+bowtie bowtie     278   392    392   253        114
+tophat tophat     302   443    443   278        141
+star     star     297   416    416   265        119
+hisat2 hisat2     297   418    418   265        121

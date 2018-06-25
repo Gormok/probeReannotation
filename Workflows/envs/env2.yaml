@@ -1,0 +1,7 @@
+name: tophat
+channels:
+  - bioconda
+dependencies:
+# command tool installs
+  - python=2.7
+  - tophat=2.1.1

@@ -1,0 +1,53 @@
+$compare
+[1] "../SymbolLists/data/bowtie/Agilent/multi.txt:../SymbolLists/data/tophat/Agilent/multi.txt:../SymbolLists/data/star/Agilent/multi.txt:../SymbolLists/data/hisat2/Agilent/multi.txt"
+
+$names
+[1] "bowtie:tophat:star:hisat2"
+
+$odir
+[1] "../Comparisons/data/Agilent/multi"
+
+$reference
+[1] "../Orig/Agilent.txt"
+
+$map
+[1] "../Orig/map.txt"
+
+$help
+[1] FALSE
+
+$compare
+                                        bowtie 
+"../SymbolLists/data/bowtie/Agilent/multi.txt" 
+                                        tophat 
+"../SymbolLists/data/tophat/Agilent/multi.txt" 
+                                          star 
+  "../SymbolLists/data/star/Agilent/multi.txt" 
+                                        hisat2 
+"../SymbolLists/data/hisat2/Agilent/multi.txt" 
+
+$names
+[1] "bowtie:tophat:star:hisat2"
+
+$odir
+[1] "../Comparisons/data/Agilent/multi"
+
+$reference
+[1] "../Orig/Agilent.txt"
+
+$map
+[1] "../Orig/map.txt"
+
+$help
+[1] FALSE
+
+         Tool Matches Total Probes Genes Mismatches
+bowtie bowtie     286   474    376   320         94
+tophat tophat     325   430    425   260        100
+star     star     318   414    409   254         91
+hisat2 hisat2     319   413    409   252         90
+         Tool Matches Total Probes Genes Mismatches
+bowtie bowtie     286   474    376   320         94
+tophat tophat     325   430    425   260        100
+star     star     318   414    409   254         91
+hisat2 hisat2     319   413    409   252         90

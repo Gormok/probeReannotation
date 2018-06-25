@@ -1,0 +1,24 @@
+
+[2018-06-25 02:10:33] Beginning TopHat run (v2.1.1)
+-----------------------------------------------
+[2018-06-25 02:10:33] Checking for Bowtie
+		  Bowtie version:	 2.2.5.0
+[2018-06-25 02:10:34] Checking for Bowtie index files (genome)..
+[2018-06-25 02:10:34] Checking for reference FASTA file
+[2018-06-25 02:10:34] Generating SAM header for /local/data/projects/CellCycle/public/GRCh38.p7/bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly.bowtie
+[2018-06-25 02:11:21] Reading known junctions from GTF file
+[2018-06-25 02:11:58] Preparing reads
+	 left reads: min. length=60, max. length=60, 468 kept reads (0 discarded)
+[2018-06-25 02:11:59] Building transcriptome data files ../Alignment/intermediate/tophat/Agilent/tmp/Homo_sapiens.GRCh38.87
+[2018-06-25 02:13:33] Building Bowtie index from Homo_sapiens.GRCh38.87.fa
+[2018-06-25 02:34:26] Mapping left_kept_reads to transcriptome Homo_sapiens.GRCh38.87 with Bowtie2 
+[2018-06-25 02:34:29] Resuming TopHat pipeline with unmapped reads
+[2018-06-25 02:34:29] Mapping left_kept_reads.m2g_um to genome Homo_sapiens.GRCh38.dna.primary_assembly.bowtie with Bowtie2 
+[2018-06-25 02:35:11] Retrieving sequences for splices
+[2018-06-25 02:36:42] Indexing splices
+[2018-06-25 02:37:13] Mapping left_kept_reads.m2g_um_unmapped to genome segment_juncs with Bowtie2 (1/1)
+[2018-06-25 02:37:16] Joining segment hits
+[2018-06-25 02:38:39] Reporting output tracks
+-----------------------------------------------
+[2018-06-25 02:40:02] A summary of the alignment counts can be found in ../Alignment/intermediate/tophat/Agilent/align_summary.txt
+[2018-06-25 02:40:02] Run complete: 00:29:28 elapsed

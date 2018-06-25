@@ -1,0 +1,75 @@
+### Aligns fastq probe files using different aligners ###
+
+configfile: "Setup.yaml"
+
+# rule bowtie_result not needed, result already in expected format
+rule bowtie_align:
+    input:
+        fastq = "../ProbeSequences/data/{platform}.fastq"
+    output:
+        sam = "../Alignment/intermediate/bowtie/{platform}.sam"
+    log:
+        log = "../Alignment/intermediate/logs/bowtie/{platform}.log"
+    threads: 2
+    shell:
+        "bowtie2 -k10 -q -p {threads} --very-sensitive --ignore-quals -x {config[BOWTIE]} -U {input.fastq} -S {output.sam}"
+        " | tee {log[0]}" 
+
+# note conda directive!
+# tophat requires specific Python
+rule tophat_align:
+    input:
+        fastq = "../ProbeSequences/data/{platform}.fastq"
+    params:
+        odir = "../Alignment/intermediate/tophat/{platform}",
+        sam = "../Alignment/intermediate/tophat/{platform}/accepted_hits.sam"
+    output:
+        sam = "../Alignment/intermediate/tophat/{platform}.sam"
+    conda: "envs/env2.yaml" 
+    threads: config["PIPELINE"]["aligners"]["threads"].get("tophat", 1)
+    shell:
+        "tophat --no-convert-bam -p {threads} -N 4 --read-edit-dist 4  -o {params.odir} -G {config[GTF]} {config[BOWTIE]} {input.fastq}" 
+        " && mv {params.sam} {output.sam}"
+
+rule star_align:
+    input:
+        fastq = "../ProbeSequences/data/{platform}.fastq"
+    params:
+        prefix = "../Alignment/intermediate/star/{platform}/",
+        sam = "../Alignment/intermediate/star/{platform}/Aligned.out.sam"
+    output:
+        sam = "../Alignment/intermediate/star/{platform}.sam"
+    log:
+        sam = "../Alignment/intermediate/star/{platform}/Aligned.out.sam" # Ensure directory for STAR output
+    threads: config["PIPELINE"]["aligners"]["threads"].get("star", 1)
+    shell:
+        "STAR --genomeDir {config[STAR]} --readFilesIn {input.fastq} --outFileNamePrefix {params.prefix} --chimSegmentMin 30"
+        " --runThreadN {threads} --outFilterMultimapNmax 20 --alignSJoverhangMin 5 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 10"
+        " --outFilterMismatchNoverLmax 0.08 --alignIntronMin 5 --alignIntronMax 2000000"
+        " && mv {params.sam} {output.sam}"
+
+def read_length (wildcards):
+   lengths = config['PLATFORMS']['probeLengths'] 
+   return lengths.get(wildcards.platform, 50)
+   
+rule hisat2_align:
+    input:
+        fastq = "../ProbeSequences/data/{platform}.fastq"
+    output:
+        sam = "../Alignment/intermediate/hisat2/{platform}.sam"
+    log:
+        "../Alignment/intermediate/logs/hisat2/{platform}.log"
+    threads: config["PIPELINE"]["aligners"]["threads"].get("hisat2", 1)
+    shell:
+        "hisat2 -q --pen-noncansplice 4 --end-to-end -p {threads} -x {config[HISAT2]} -U {input.fastq} -S {output.sam}"
+
+# change to -s no for unstranded
+rule count_stranded:
+    input:
+        sam = "../Alignment/intermediate/{tool}/{platform}.sam"
+    output:
+        int = "../Alignment/data/{tool}/{platform}.int"
+    log:
+        "../Alignment/data/logs/{tool}/{platform}.log"
+    shell:
+        "(htseq-count -s yes -i gene_id -t exon -o {output.int} {input.sam} {config[GTF]} | tail -n5) | tee {log[0]} 2>&1"

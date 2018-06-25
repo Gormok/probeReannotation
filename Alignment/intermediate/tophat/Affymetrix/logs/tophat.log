@@ -1,0 +1,30 @@
+
+[2018-06-25 01:20:36] Beginning TopHat run (v2.1.1)
+-----------------------------------------------
+[2018-06-25 01:20:36] Checking for Bowtie
+		  Bowtie version:	 2.2.5.0
+[2018-06-25 01:20:37] Checking for Bowtie index files (genome)..
+[2018-06-25 01:20:37] Checking for reference FASTA file
+[2018-06-25 01:20:37] Generating SAM header for /local/data/projects/CellCycle/public/GRCh38.p7/bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly.bowtie
+[2018-06-25 01:21:04] Reading known junctions from GTF file
+[2018-06-25 01:21:36] Preparing reads
+	 left reads: min. length=25, max. length=25, 4651 kept reads (0 discarded)
+[2018-06-25 01:21:36] Building transcriptome data files ../Alignment/intermediate/tophat/Affymetrix/tmp/Homo_sapiens.GRCh38.87
+[2018-06-25 01:23:02] Building Bowtie index from Homo_sapiens.GRCh38.87.fa
+[2018-06-25 01:46:19] Mapping left_kept_reads to transcriptome Homo_sapiens.GRCh38.87 with Bowtie2 
+[2018-06-25 01:46:24] Resuming TopHat pipeline with unmapped reads
+Warning: you have only one segment per read.
+	If the read length is greater than or equal to 45bp,
+	we strongly recommend that you decrease --segment-length to about half the read length because TopHat will work better with multiple segments
+[2018-06-25 01:46:24] Mapping left_kept_reads.m2g_um to genome Homo_sapiens.GRCh38.dna.primary_assembly.bowtie with Bowtie2 
+[2018-06-25 01:46:52] Searching for junctions via segment mapping
+[2018-06-25 01:48:40] Retrieving sequences for splices
+[2018-06-25 01:50:08] Indexing splices
+[2018-06-25 01:50:37] Mapping left_kept_reads.m2g_um_unmapped to genome segment_juncs with Bowtie2 (1/1)
+open: No such file or directory
+Error: bam2fastx failed to open BAM file ../Alignment/intermediate/tophat/Affymetrix/tmp/left_kept_reads.m2g_um_unmapped.bam
+[2018-06-25 01:50:40] Joining segment hits
+[2018-06-25 01:52:06] Reporting output tracks
+-----------------------------------------------
+[2018-06-25 01:53:30] A summary of the alignment counts can be found in ../Alignment/intermediate/tophat/Affymetrix/align_summary.txt
+[2018-06-25 01:53:30] Run complete: 00:32:53 elapsed

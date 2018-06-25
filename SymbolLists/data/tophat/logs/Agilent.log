@@ -1,0 +1,24 @@
+$file
+[1] "../SymbolLists/intermediate/tophat/Agilent.txt"
+
+$output
+[1] "../SymbolLists/data/tophat/Agilent/uniq.txt"
+
+$multimaps
+[1] "../SymbolLists/data/tophat/Agilent/multi.txt"
+
+$help
+[1] FALSE
+
+[1] "SUCCESS: Breakdown is a disjoint union and covers all indices."
+419 probes were matched uniquely.
+11 extra symbolList entries were added for uncovered genes.
+9 genes were covered by the entries.
+1 probes were left unused.
+Other entries:XF:Z:__no_feature : 13 
+XF:Z:__too_low_aQual : 0 
+XF:Z:__not_aligned : 0 
+XF:Z:__alignment_not_unique : 27 
+residue.mix : 0 
+[1] "Result table saved to ../SymbolLists/data/tophat/Agilent/uniq.txt"
+[1] "Multi table saved to ../SymbolLists/data/tophat/Agilent/multi.txt"

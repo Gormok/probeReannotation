@@ -1,0 +1,45 @@
+### CONSTANT SETUP FILE ###
+### Set up before proceeding with analysis ###
+
+### Genome locations ### 
+
+GTF: "/local/data/projects/CellCycle/public/GRCh38.p7/Homo_sapiens.GRCh38.87.gtf"
+FA: "/local/data/projects/CellCycle/public/GRCh38.p7/Homo_sapiens.GRCh38.dna.primary_assembly.fa"
+
+### Index file locations ###
+
+BOWTIE: "/local/data/projects/CellCycle/public/GRCh38.p7/bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly.bowtie"
+STAR: "/local/data/projects/CellCycle/public/GRCh38.p7/star"
+HISAT2: "/local/data/projects/CellCycle/public/GRCh38.p7/Homo_sapiens.GRCh38.dna.primary_assembly.hisat2"
+
+
+
+### Platform settings ###
+
+PLATFORMS:
+    names:
+        - Affymetrix
+        - Illumina
+        - Agilent
+    probeLengths:
+        Affymetrix: 25
+        Illumina: 50
+        Agilent: 60
+
+### Pipeline settings ###
+PIPELINE:
+    aligners:
+        names:
+            - bowtie
+            - tophat
+            - star
+            - hisat2
+
+        threads: # note multiple jobs will be running at time
+            bowtie: 2
+            tophat: 2
+            star: 2
+            hisat2: 2
+    modes:
+        - uniq
+        - multi

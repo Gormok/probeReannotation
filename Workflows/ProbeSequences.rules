@@ -1,0 +1,76 @@
+### Derives fastq files from the probe descriptions
+### For testing purposes, change ruleorder below for a subset of probes only
+### A new conversion script may be required for any new platforms 
+
+from snakemake.utils import R
+
+# for testing
+#ruleorder: probeSelect>noSelect 
+ruleorder: noSelect>probeSelect
+
+
+rule fastq_Affymetrix:
+   input:
+      aSet = "../Raw/Affymetrix-a.txt",
+      bSet = "../Raw/Affymetrix-b.txt"
+   log:
+      allProbes = "../ProbeSequences/intermediate/Affymetrix/allProbes.txt"
+   output:
+      fastq = "../ProbeSequences/intermediate/Affymetrix_full.fastq"
+   script:
+      "../ProbeSequences/scripts/deriveProbes-Affymetrix.R"
+
+rule fastq_Illumina:
+   input:
+      txt = "../Raw/Illumina.txt"
+   log:
+      probesGenuine = "../ProbeSequences/intermediate/Illumina/probesGenuine.txt",
+      probesControl = "../ProbeSequences/intermediate/Illumina/probesControl.txt",
+      probesAll = "../ProbeSequences/intermediate/Illumina/probesAll.txt",
+      rest = "../ProbeSequences/intermediate/Illumina/rest.txt"
+   output:
+      fastq = "../ProbeSequences/intermediate/Illumina_full.fastq"
+   script:
+      "../ProbeSequences/scripts/deriveProbes-Illumina.R"
+
+rule fastq_Agilent:
+   input:
+      txt = "../Raw/Agilent.txt"
+   log:
+      fastqFull = "../ProbeSequences/intermediate/Agilent/full.fastq",
+      probes = "../ProbeSequences/intermediate/Agilent/probes.txt"
+   output:
+      fastq = "../ProbeSequences/intermediate/Agilent_full.fastq"
+   script:
+      "../ProbeSequences/scripts/deriveProbes-Agilent.R"
+
+### Add new platforms here alike above###
+
+rule noSelect:
+   input:
+      all = "../ProbeSequences/intermediate/{platform}_full.fastq"
+   output:
+      fastq = "../ProbeSequences/data/{platform}.fastq"
+   wildcard_constraints: # necessary, or noSelect recursively matches
+      platform="[^_]*"
+   shell:
+      "cp {input} {output}"
+
+# for testing purposes only, only works with a subset of probes
+rule probeSelect:
+   input:
+      all = "../ProbeSequences/intermediate/{platform}_full.fastq",
+      select = "../selectProbes/{platform}.txt"
+   output:
+      fastq = "../ProbeSequences/data/{platform}.fastq"
+   run:
+      R("""
+      fastq_full = readLines("{input.all}") %>% split(., ceiling(seq_along(.)/4))
+      fastq_full_df = data.frame(line = fastq_full %>% unlist,
+         probe = sapply(fastq_full, function(x) substring(x[1],2)) %>% sapply(., rep, times=4) %>% as.character,
+         stringsAsFactors = F)
+      allowed = readLines("{input.select}")
+      fastq_lines_filtered = fastq_full_df$line[fastq_full_df$probe %in% allowed]
+      writeLines(fastq_lines_filtered, "{output.fastq}")
+      """)
+

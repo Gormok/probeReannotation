@@ -1,0 +1,24 @@
+$file
+[1] "../SymbolLists/intermediate/hisat2/Affymetrix.txt"
+
+$output
+[1] "../SymbolLists/data/hisat2/Affymetrix/uniq.txt"
+
+$multimaps
+[1] "../SymbolLists/data/hisat2/Affymetrix/multi.txt"
+
+$help
+[1] FALSE
+
+[1] "SUCCESS: Breakdown is a disjoint union and covers all indices."
+350 probes were matched uniquely.
+28 extra symbolList entries were added for uncovered genes.
+19 genes were covered by the entries.
+0 probes were left unused.
+Other entries:XF:Z:__no_feature : 18 
+XF:Z:__too_low_aQual : 0 
+XF:Z:__not_aligned : 1 
+XF:Z:__alignment_not_unique : 10 
+residue.mix : 25 
+[1] "Result table saved to ../SymbolLists/data/hisat2/Affymetrix/uniq.txt"
+[1] "Multi table saved to ../SymbolLists/data/hisat2/Affymetrix/multi.txt"

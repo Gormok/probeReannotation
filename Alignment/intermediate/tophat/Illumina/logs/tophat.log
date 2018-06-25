@@ -1,0 +1,28 @@
+
+[2018-06-25 03:06:23] Beginning TopHat run (v2.1.1)
+-----------------------------------------------
+[2018-06-25 03:06:23] Checking for Bowtie
+		  Bowtie version:	 2.2.5.0
+[2018-06-25 03:06:24] Checking for Bowtie index files (genome)..
+[2018-06-25 03:06:24] Checking for reference FASTA file
+[2018-06-25 03:06:24] Generating SAM header for /local/data/projects/CellCycle/public/GRCh38.p7/bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly.bowtie
+[2018-06-25 03:08:44] Reading known junctions from GTF file
+[2018-06-25 03:09:53] Preparing reads
+	 left reads: min. length=50, max. length=50, 479 kept reads (0 discarded)
+[2018-06-25 03:09:53] Building transcriptome data files ../Alignment/intermediate/tophat/Illumina/tmp/Homo_sapiens.GRCh38.87
+[2018-06-25 03:13:38] Building Bowtie index from Homo_sapiens.GRCh38.87.fa
+[2018-06-25 03:42:20] Mapping left_kept_reads to transcriptome Homo_sapiens.GRCh38.87 with Bowtie2 
+[2018-06-25 03:42:34] Resuming TopHat pipeline with unmapped reads
+[2018-06-25 03:42:34] Mapping left_kept_reads.m2g_um to genome Homo_sapiens.GRCh38.dna.primary_assembly.bowtie with Bowtie2 
+[2018-06-25 03:44:12] Mapping left_kept_reads.m2g_um_seg1 to genome Homo_sapiens.GRCh38.dna.primary_assembly.bowtie with Bowtie2 (1/2)
+[2018-06-25 03:45:23] Mapping left_kept_reads.m2g_um_seg2 to genome Homo_sapiens.GRCh38.dna.primary_assembly.bowtie with Bowtie2 (2/2)
+[2018-06-25 03:46:50] Searching for junctions via segment mapping
+[2018-06-25 03:51:04] Retrieving sequences for splices
+[2018-06-25 03:55:36] Indexing splices
+[2018-06-25 03:56:25] Mapping left_kept_reads.m2g_um_seg1 to genome segment_juncs with Bowtie2 (1/2)
+[2018-06-25 03:56:31] Mapping left_kept_reads.m2g_um_seg2 to genome segment_juncs with Bowtie2 (2/2)
+[2018-06-25 03:56:45] Joining segment hits
+[2018-06-25 04:00:55] Reporting output tracks
+-----------------------------------------------
+[2018-06-25 04:02:59] A summary of the alignment counts can be found in ../Alignment/intermediate/tophat/Illumina/align_summary.txt
+[2018-06-25 04:02:59] Run complete: 00:56:35 elapsed

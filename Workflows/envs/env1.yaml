@@ -1,0 +1,25 @@
+name: probeAlignment
+channels:
+  - bioconda
+  - conda-forge # bowtie -> tbb
+  - r
+  - bioconda-legacy # perl
+dependencies:
+# command tool installs
+  - R=3.3.2
+  - python=3.6.0
+  - perl=5.22.0
+  - rpy2=2.7.8
+  - bowtie2=2.3.2
+  - star=2.5.3a
+  - htseq=0.7.2
+  - snakemake=3.13.0
+  - kallisto=0.43.0
+  - hisat2=2.0.5
+
+# r channel installs - packages
+  - r-magrittr=1.5
+  - r-ggplot2=2.2.0
+  - r-optparse=1.3.2
+  - r-venn=1.2
+  - r-purrr=0.2.4

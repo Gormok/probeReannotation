@@ -1,0 +1,42 @@
+### Performs comparisons on the resulting symbolLists ###
+### update ../Orig/map.txt for your genome annotation 
+
+configfile: "Setup.yaml"
+
+# tools and platforms used
+# assure corresponding rules
+tools = config["PIPELINE"]["aligners"]["names"]
+modes = config["PIPELINE"]["modes"]
+platforms = config["PLATFORMS"]["names"]
+
+snakefiles = ["ProbeSequences.rules", "Alignment.rules", "SymbolLists.rules"]
+for f in snakefiles:
+    include: f
+
+# output files produced by compareTools.R
+ofiles = ["assigned.pdf", "matches.pdf", "refmatch.pdf", "total.pdf", "total-refmatch.pdf"]
+
+rule all:
+   input:
+      expand("../Comparisons/data/{platform}/{mode}/{ofile}", platform = platforms, mode = modes, ofile = ofiles)
+
+rule compare:
+    params:
+        compare = lambda wildcards, input: ':'.join(input.compare),
+        tools = ":".join(tools),
+        odir = "../Comparisons/data/{platform}/{mode}"
+    input:
+        ref = "../Orig/{platform}.txt", # Manufacturer probe -> Entrez map
+        map = "../Orig/map.txt", # Entrez -> Ensembl map
+        compare = lambda w: expand("../SymbolLists/data/{tool}/{platform}/{mode}.txt",
+              tool=tools, platform = w.platform, mode = w.mode)
+    output:
+         expand("../Comparisons/data/{{platform}}/{{mode}}/{ofile}", ofile=ofiles)
+         #["../Comparisons/data/{platform}/"+ofile for ofile in ofiles]
+    log:
+        "../Comparisons/data/{platform}/logs/{mode}.txt"
+    shell:
+       "Rscript ../Comparisons/scripts/compareTools.R"
+       " -c {params.compare} -o {params.odir}"
+       " -r {input.ref} -m {input.map} -n {params.tools} | tee {log[0]}"
+
